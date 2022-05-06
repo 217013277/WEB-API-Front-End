@@ -29,7 +29,7 @@ const DeleteBtn = ( path ) => {
       console.log(response.data)
       setpromtMsg('Dog information deleted successfully. We will redirect you to homepage')
       setTimeout(() => {
-        navigate(-1);
+        navigate(-1, {replace: true});
       }, 2500);
     })
     .catch ((error) => {

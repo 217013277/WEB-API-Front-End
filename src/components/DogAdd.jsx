@@ -33,7 +33,7 @@ const DogAdd = () => {
     .then ((response) => {
       setpromtMsg('You are successfully to add a new dog. We will redirect you to it');
       setTimeout(() => {
-        navigate(`/dogs/${response.data.id}`)
+        navigate(`/dogs/${response.data.id}`, {replace: true})
       }, 2500);
     })
     .catch ((error) => {

@@ -48,7 +48,7 @@ const DogEditForm = (props) => {
     .then ((response) => {
       setpromtMsg('Submitted successfully. We will redirect you now');
       setTimeout(() => {
-        navigate(`/dogs/${response.data.id}`)
+        navigate(`/dogs/${response.data.id}`, {replace: true})
       }, 2500);
     })
     .catch ((error) => {
