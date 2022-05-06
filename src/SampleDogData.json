@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "name": "Lucky",
+        "description": "A good dog",
+        "birthday": "2018-04-30",
+        "datecreated": "2022-04-28T06:03:40.334Z",
+        "datemodified": "2022-04-28T06:03:40.334Z",
+        "imageurl": null,
+        "published": null,
+        "authorid": null,
+        "breed": "Poodle",
+        "link": "https://dogwebsitereact.217013277.repl.co/dogs/1"
+    },
+    {
+        "id": 2,
+        "name": "Lucy",
+        "description": "A smart girl",
+        "birthday": "2019-02-15",
+        "datecreated": "2022-04-28T06:05:28.124Z",
+        "datemodified": "2022-04-28T06:05:28.124Z",
+        "imageurl": null,
+        "published": null,
+        "authorid": null,
+        "breed": "Chihuahua",
+        "link": "https://dogwebsitereact.217013277.repl.co/dogs/2"
+    },
+    {
+        "id": 4,
+        "name": "Buster",
+        "description": "Corporate",
+        "birthday": "2019-01-01",
+        "datecreated": "2022-04-29T06:43:59.245Z",
+        "datemodified": "2022-04-29T06:43:59.245Z",
+        "imageurl": null,
+        "published": null,
+        "authorid": null,
+        "breed": "breed",
+        "link": "https://dogwebsitereact.217013277.repl.co/dogs/4"
+    },
+    {
+        "id": 5,
+        "name": "Esta",
+        "description": "Corporate",
+        "birthday": "2019-01-01",
+        "datecreated": "2022-04-29T06:58:25.399Z",
+        "datemodified": "2022-04-29T06:58:25.399Z",
+        "imageurl": null,
+        "published": null,
+        "authorid": null,
+        "breed": "breed",
+        "link": "https://dogwebsitereact.217013277.repl.co/dogs/5"
+    },
+    {
+        "id": 6,
+        "name": "Shanel",
+        "description": "Lead",
+        "birthday": "2019-01-01",
+        "datecreated": "2022-04-29T06:59:10.814Z",
+        "datemodified": "2022-04-29T06:59:10.814Z",
+        "imageurl": null,
+        "published": null,
+        "authorid": null,
+        "breed": "breed",
+        "link": "https://dogwebsitereact.217013277.repl.co/dogs/6"
+    },
+    {
+        "id": 7,
+        "name": "Kaelyn",
+        "description": "Investor",
+        "birthday": "2019-01-01",
+        "datecreated": "2022-04-29T06:59:27.517Z",
+        "datemodified": "2022-04-29T06:59:27.517Z",
+        "imageurl": null,
+        "published": null,
+        "authorid": null,
+        "breed": "breed",
+        "link": "https://dogwebsitereact.217013277.repl.co/dogs/7"
+    },
+    {
+        "id": 3,
+        "name": "Rory",
+        "description": "Global",
+        "birthday": "2019-01-01",
+        "datecreated": "2022-04-29T06:42:40.831Z",
+        "datemodified": "2022-04-29T06:42:40.831Z",
+        "imageurl": null,
+        "published": null,
+        "authorid": null,
+        "breed": "breed",
+        "link": "https://dogwebsitereact.217013277.repl.co/dogs/3"
+    }
+]

@@ -1,5 +1,24 @@
-/*main {
+@import 'antd/dist/antd.css';
+
+Button {
+  margin: 10px;
+}
+
+main {
   text-align: center;
   vertical-align: center;
-  line-height: 100vh
-}*/
+  line-height: 5vh
+}
+
+.search {
+  margin: 10px;
+}
+
+#content {
+  margin: 20px;
+}
+
+#navbar {
+  color: white;
+}
+

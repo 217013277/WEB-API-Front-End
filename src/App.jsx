@@ -1,48 +1,58 @@
-import { Layout, Space } from 'antd';
 import React from 'react';
-import './App.css';
-import { BrowserRouter as Router,
-        Routes, Route, Link 
-       } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import { Layout, Space } from "antd"
 
-import Home from './components/home'
-import Dashboard from './components/dashboard'
-import About from './components/about'
-import DetailArticle from './components/detailarticle'
-import Registration from './components/register'
-import NotFound from './components/notfound'
+import './App.css'
 
-const { Header, Content, Footer } = Layout;
+import Home from "./components/Home.jsx"
+import DogDetail from "./components/DogDetail.jsx"
+import DogAdd from "./components/DogAdd.jsx"
+import Register from "./components/Register.jsx"
+import Login from "./components/Login.jsx"
+import DogEditForm from './components/form/DogEditForm.jsx'
+import LogoutBtn from './components/utils/LogoutBtn.jsx'
+import useAuth from './hooks/useAuth'
+import SearchBar from './components/utils/SearchBar.jsx'
 
-function App() {
+const App = () => {
+  const { Header, Content, Footer } = Layout;
+  const { auth } = useAuth();
+  
   return (
-    <Router>      
+    <Router>
       <Header>
-        <nav>
+        <nav id='navbar'>
           <Space>
-          <Link to="/">Home</Link>  
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/about">About</Link>
-          <Link to="/register">Register</Link>
+            <Link to="/">Home</Link>
+            {auth.username?
+              <> <LogoutBtn /> </> :
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            }
           </Space>
         </nav>
-      </Header>       
-      <Content>
+      </Header>
+      <Content id='content'>
         <Routes>
-          <Route exact path="/" element={ <Home />} />
-          <Route path="/about" element={ <About />} />
-          <Route path="/dashboard" element={ <Dashboard /> } />
-          <Route path="/a/:aid" element={ <DetailArticle />} />
-          <Route path="/register" element={ <Registration /> } />
-          <Route path="*" element={ <NotFound /> }/>          
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route exact path="/dogs/:id" element={<DogDetail />} />
+          <Route path="/dogs/:id/edit" element={<DogEditForm />} />
+          <Route path="/dogs/add" element={<DogAdd />} />
+          <Route path="*" element={<p>404 Not Found</p>} />
         </Routes>
       </Content>
-      <Footer>
-        <p>VT6003CEM Demo</p>
+      <Footer id='footer'>
+        <Space>
+          <p>VT6003CEM Demo</p>
+          {auth.username ? <p>Hi {auth.username} ({auth.role})</p> : <p>Hi Guest</p> }
+        </Space>
       </Footer>
-      
-    </Router>   
-  );
+    </Router>
+  )
 }
 
 export default App;
