@@ -16,7 +16,6 @@ const DogDetail = () => {
   const [ dogData, setDogData ] = useState(null);
 
   useEffect(() => {
-    console.log(auth)
     setLoading(true)
     http.get(`/dogs/${id}`)
     .then((response, error) => {
@@ -58,7 +57,7 @@ const DogDetail = () => {
           return(
           <>
             <p>Cannot not found the dog</p>
-            <BackBtn />
+            <BackBtn path={'/'}/>
           </>
         )
       }

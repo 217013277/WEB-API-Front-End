@@ -85,7 +85,7 @@ const DogAdd = () => {
           { promtMsg ? <p>{promtMsg}</p> : <></> }
         </Form.Item>
       </Form>
-      <BackBtn />
+      <BackBtn path={'/'}/>
     </>
   )
 }

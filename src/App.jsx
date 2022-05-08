@@ -7,9 +7,9 @@ import './App.css'
 import Home from "./components/Home.jsx"
 import DogDetail from "./components/DogDetail.jsx"
 import DogAdd from "./components/DogAdd.jsx"
+import DogEdit from "./components/DogEdit.jsx"
 import Register from "./components/Register.jsx"
 import Login from "./components/Login.jsx"
-import DogEditForm from './components/form/DogEditForm.jsx'
 import LogoutBtn from './components/utils/LogoutBtn.jsx'
 import useAuth from './hooks/useAuth'
 import SearchBar from './components/utils/SearchBar.jsx'
@@ -40,7 +40,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route exact path="/dogs/:id" element={<DogDetail />} />
-          <Route path="/dogs/:id/edit" element={<DogEditForm />} />
+          <Route path="/dogs/:id/edit" element={<DogEdit />} />
           <Route path="/dogs/add" element={<DogAdd />} />
           <Route path="*" element={<p>404 Not Found</p>} />
         </Routes>

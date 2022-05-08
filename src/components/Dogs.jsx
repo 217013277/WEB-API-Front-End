@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import { Button, Card, Col, Row } from "antd"
 
+import useAuth from '../hooks/useAuth'
 import http from "../common/http-common.js"
 import LoadingIcon from './utils/LoadingIcon.jsx'
 import SearchBar from './utils/SearchBar.jsx'
@@ -16,6 +17,7 @@ const CardLayout = {
 }
 
 const Dogs = () => {
+  const { auth } = useAuth();
   const [loading, setLoading] = useState(true)
   const [Dogs, setDogs] = useState(null)
   
@@ -40,7 +42,10 @@ const Dogs = () => {
     } else {
       return(
         <>
-          <Button><Link to={`/dogs/add`} >Add a new dog</Link></Button>
+          { auth.role == 'worker' ? 
+          <Button><Link to={`/dogs/add`} >Add a new dog</Link></Button> :
+            <></>
+          }
           <SearchBar placeholder='Search something...' data={Dogs}/>
           <Row type="flex" justify="space-around">
             {

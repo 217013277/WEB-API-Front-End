@@ -37,13 +37,8 @@ const Login = () => {
     .then ( (response) => {
       console.log(`login successfully: ${response.data.username}`)
       console.log(JSON.stringify(response?.data))
-      const id = response?.data?.id;
-      const username = response?.data?.username;
-      const password = response?.data?.password;
-      const role = response?.data?.role;
       setAuth(response.data);
       setSubmitting(false);
-      console.log(JSON.stringify(auth.role));
       setLoginMessage('Login successfully. We will redirect you to homepage');
       setTimeout(() => {
         navigate(-1, {replace: true});
@@ -91,7 +86,7 @@ const Login = () => {
         </Form.Item>
         { submitting ? <LoadingIcon /> : <p>{ loginMessage }</p> }
       </Form>
-      <BackBtn />
+      <BackBtn path={'/'}/>
     </div>
 	);
 }
