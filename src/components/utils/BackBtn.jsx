@@ -4,10 +4,11 @@ import { Button } from "antd"
 import { RollbackOutlined } from '@ant-design/icons'
 
 const BackBtn = (event) => {
+  const path = event?.path
   const navigate = useNavigate()
   const back = () => {
-    console.log(`Start navigate to ${event.path? event.path : '/'}`)
-    navigate(event.path? event.path : '/')
+    console.log(`Start navigate to ${path ? path : '/'}`)
+    navigate(path ? path : '/')
   }
   return <Button icon={<RollbackOutlined />} onClick={back} >Back</Button>
 }

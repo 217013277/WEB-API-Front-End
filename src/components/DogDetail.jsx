@@ -32,10 +32,10 @@ const DogDetail = () => {
     navigate('edit') 
   }
   
-	if(loading){
+	if (loading) {
     return(<LoadingIcon />)
   } else {
-    if(dogData) {
+    if (dogData) {
       return (
         <>
           <h1>{dogData.name}</h1>
@@ -43,13 +43,13 @@ const DogDetail = () => {
           <p>Breed: {dogData.breed}</p>
           <p>Date of birth: {dogData.birthday}</p>
           <p>ID: {dogData.id}</p>
-          { auth.role == 'worker' ? 
+          { auth.role == 'worker' && 
             <div>
               <Space>
                 <Button type="primary" onClick={ () => editDogDetails() }>Edit</Button>
                 <DeleteBtn path={`/dogs/${id}`} />
               </Space>
-            </div> : <></> }
+            </div> }
           <BackBtn />
         </>
       )

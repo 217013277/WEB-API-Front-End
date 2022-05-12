@@ -10,9 +10,11 @@ import DogAdd from "./components/DogAdd.jsx"
 import DogEdit from "./components/DogEdit.jsx"
 import Register from "./components/Register.jsx"
 import Login from "./components/Login.jsx"
+import Dashboard from "./components/Dashboard.jsx"
+import UserEdit from "./components/UserEdit.jsx"
+
 import LogoutBtn from './components/utils/LogoutBtn.jsx'
 import useAuth from './hooks/useAuth'
-import SearchBar from './components/utils/SearchBar.jsx'
 
 const App = () => {
   const { Header, Content, Footer } = Layout;
@@ -25,7 +27,10 @@ const App = () => {
           <Space>
             <Link to="/">Home</Link>
             {auth.username?
-              <> <LogoutBtn /> </> :
+              <> 
+                <Link to="/dashboard">Dashboard</Link>
+                <LogoutBtn /> 
+              </> :
               <>
                 <Link to="/login">Login</Link>
                 <Link to="/register">Register</Link>
@@ -39,6 +44,8 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/edit" element={<UserEdit />} />
           <Route exact path="/dogs/:id" element={<DogDetail />} />
           <Route path="/dogs/:id/edit" element={<DogEdit />} />
           <Route path="/dogs/add" element={<DogAdd />} />

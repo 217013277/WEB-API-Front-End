@@ -50,11 +50,13 @@ const DeleteBtn = ( path ) => {
         <Card>
           <p>Are you sure you want to delete this dog?</p>
           { loading ? 
-            <LoadingIcon /> : success ? <></> :
+            <LoadingIcon /> 
+            : 
+            !success &&
             <Button type="danger" onClick={() => deleteItem()}>Confirm</Button>
           }
-            <Button onClick={() => setAskConfirm(false)} >No, Back</Button>
-          { promtMsg ? <p>{promtMsg}</p> : <></> }
+            <Button onClick={() => setAskConfirm(false)}>No, Back</Button>
+          { promtMsg && <p>{promtMsg}</p> }
         </Card>
         }
       </>

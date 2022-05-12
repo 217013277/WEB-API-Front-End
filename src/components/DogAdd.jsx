@@ -82,7 +82,7 @@ const DogAdd = () => {
             Submit
             </Button>
           }
-          { promtMsg ? <p>{promtMsg}</p> : <></> }
+          { promtMsg && <p>{promtMsg}</p> }
         </Form.Item>
       </Form>
       <BackBtn path={'/'}/>

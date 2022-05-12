@@ -46,7 +46,7 @@ const DogEditForm = props => {
 		console.log(data);
 		authHeader(auth.username, auth.password);
 		http
-			.put(`/dogs`, data)
+			.put(`/dogs/${id}`, data)
 			.then(response => {
 				setpromtMsg('Submitted successfully. We will redirect you now');
 				setTimeout(() => {
@@ -125,7 +125,7 @@ const DogEditForm = props => {
 									Submit
 								</Button>
 							)}
-							{promtMsg ? <p>{promtMsg}</p> : <></>}
+							{promtMsg && <p>{promtMsg}</p> }
 						</Form.Item>
 					</Form>
 					<BackBtn />

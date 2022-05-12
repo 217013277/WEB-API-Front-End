@@ -42,27 +42,18 @@ const RegistrationForm = () => {
     { required: true, message:'Please choose your role' }
   ]
 
-  const workeridRules = [
-    {required: true, message:'Please input your worker ID'}
-  ]
+  const workeridRules = [{ required: true, message:'Please input your worker ID' }]
   
-  const fnameRules = [
-    { required: true, message:'Please input your first name' }
-  ]
+  const fnameRules = [{ required: true, message:'Please input your first name' }]
 
-      const lnameRules = [
-    { required: true, message:'Please input your last name' }
-  ]
-  
+  const lnameRules = [{ required: true, message:'Please input your last name' }]
   
   const emailRules = [
     {type: 'email', message:'input invalid'},
     {required: true, message:'Please input an email'}
   ]
 
-  const passwordRules = [
-    {required: true, message: 'Please input your password'}
-  ]
+  const passwordRules = [{required: true, message: 'Please input your password'}]
 
   const confirmRules = [
     {required: true, message: 'Please confirm your password'},
