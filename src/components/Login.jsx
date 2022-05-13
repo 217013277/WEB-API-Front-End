@@ -35,9 +35,12 @@ const Login = () => {
     
     http.post('/users/login')
     .then ( (response) => {
-      console.log(`login successfully: ${response.data.username}`)
-      console.log(JSON.stringify(response?.data))
-      setAuth(response.data);
+      setAuth({
+        id: response.data.id,
+        username: response.data.username,
+        password: password,
+        role: response.data.role
+      });
       setSubmitting(false);
       setLoginMessage('Login successfully. We will redirect you to homepage');
       setTimeout(() => {
@@ -45,7 +48,7 @@ const Login = () => {
       }, 2500);
     })
     .catch ((error) => {
-      setLoading(false)
+      setSubmitting(false)
       if (error.response) {
         console.log(error.response.data)
         console.log(error.response.status)

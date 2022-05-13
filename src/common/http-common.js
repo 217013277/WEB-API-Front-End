@@ -8,13 +8,6 @@ export const http = axios.create({
   }
 })
 
-// http.interceptors.request.use ((config) => {
-//   console.log(config)
-//     if (username && password) config.headers.Authorization = `username: '${username}', password: '${password}'`;
-//     return config;
-//   }
-// )
-
 const authHeader = (username, password) => {
   http.defaults.headers.common['Authorization'] = `Basic ${Buffer.from(`${username}:${password}`, 'utf8').toString('base64')}`
 } 
