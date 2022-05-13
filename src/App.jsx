@@ -12,6 +12,7 @@ import Register from "./components/Register.jsx"
 import Login from "./components/Login.jsx"
 import Dashboard from "./components/Dashboard.jsx"
 import UserEdit from "./components/UserEdit.jsx"
+import NotFound from "./components/NotFound.jsx"
 
 import LogoutBtn from './components/utils/LogoutBtn.jsx'
 import useAuth from './hooks/useAuth'
@@ -49,7 +50,7 @@ const App = () => {
           <Route exact path="/dogs/:id" element={<DogDetail />} />
           <Route path="/dogs/:id/edit" element={<DogEdit />} />
           <Route path="/dogs/add" element={<DogAdd />} />
-          <Route path="*" element={<p>404 Not Found</p>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Content>
       <Footer id='footer'>
