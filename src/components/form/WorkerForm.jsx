@@ -17,17 +17,21 @@ const tailFormItemLayout = {
 
 const RegistrationForm = () => {
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
+  const [promtMsg, setpromtMsg] = useState('');
+  const [status, setStatus] = useState('')
   
   const onFinish = (values) => {
-    setLoading(true)
+    setStatus('isSubmitting')
     const {confirm, ...data} = values
     console.log(data)
     http.post('/workers', data)
     .then ((response) => {
       console.log(response.data)
-      setLoading(false)
-      navigate('/login')
+      setStatus('isSucced')
+      setpromtMsg('Submitted successfully. We will redirect you now');
+      setTimeout(() => {
+					navigate('/login', { replace: true });
+				}, 2500);
     })
     .catch ((error) => {
       if(error.response) {
@@ -35,14 +39,15 @@ const RegistrationForm = () => {
         console.log(error.response.status)
         console.log(error.response.header)
       }
+      setStatus('isFailed');
+      setpromtMsg('Something is wrong, please try again');
     })
   }
 
-  const roleRules = [
-    { required: true, message:'Please choose your role' }
+  const workeridRules = [
+    { pattern: new RegExp(/^[0-9]+$/), message:'Not invalid worker ID' },
+    { required: true, message:'Please input your worker ID' }
   ]
-
-  const workeridRules = [{ required: true, message:'Please input your worker ID' }]
   
   const fnameRules = [{ required: true, message:'Please input your first name' }]
 
@@ -74,14 +79,16 @@ const RegistrationForm = () => {
   return(
     <>
       <Form {...formItemLayout} name="register" onFinish={onFinish}>
-        
-        <Form.Item name="firstname" label="First Name" autoComplete="given-name" rules={fnameRules}>
+        <Form.Item name="workerid" label="Worker ID" autoComplete="off" rules={workeridRules}>
+          <InputNumber />
+        </Form.Item>
+        <Form.Item name="firstname" label="First Name" autoComplete="given-name" rules={fnameRules} hasFeedback>
           <Input />
         </Form.Item>
-        <Form.Item name="lastname" label="Last Name" autoComplete="family-name" rules={lnameRules}>
+        <Form.Item name="lastname" label="Last Name" autoComplete="family-name" rules={lnameRules} hasFeedback>
           <Input />
         </Form.Item>
-        <Form.Item name="username" label="Username"  autoComplete="username" rules={usernameRules}>
+        <Form.Item name="username" label="Username"  autoComplete="username" rules={usernameRules} hasFeedback>
           <Input />
         </Form.Item>
         <Form.Item name="email" label="E-mail" autoComplete="email" rules={emailRules} hasFeedback>
@@ -94,17 +101,15 @@ const RegistrationForm = () => {
          <Input.Password />
         </Form.Item>
         <Form.Item {...tailFormItemLayout} >
-          {loading ?
+          {status == 'isSubmitting' || status == 'isSucced' ?
             <LoadingIcon /> :
             <Button type="primary" htmlType="submit">
               Register
             </Button>
           }
+          {promtMsg && <p>{promtMsg}</p> }
         </Form.Item>
       </Form>
-      <div>
-      {loading ? (<LoadingIcon />):<></>}
-      </div>
     </>
   )
 }

@@ -9,6 +9,7 @@ import LoadingIcon from './LoadingIcon.jsx'
 const DeleteBtn = ( path ) => {
   const navigate = useNavigate();
   const { auth } = useAuth();
+  const [status, setStatus ] = useState('')
   const [ askConfirm, setAskConfirm ] = useState(false);
   const [ loading, setLoading ] = useState(false);
   const [ success, setSuccess ] = useState(false);
@@ -29,7 +30,7 @@ const DeleteBtn = ( path ) => {
       console.log(response.data)
       setpromtMsg('Dog information deleted successfully. We will redirect you to homepage')
       setTimeout(() => {
-        navigate(-1, {replace: true});
+        navigate('/', {replace: true});
       }, 2500);
     })
     .catch ((error) => {
@@ -53,9 +54,11 @@ const DeleteBtn = ( path ) => {
             <LoadingIcon /> 
             : 
             !success &&
-            <Button type="danger" onClick={() => deleteItem()}>Confirm</Button>
+            <>
+              <Button type="danger" onClick={() => deleteItem()}>Confirm</Button>
+              <Button onClick={() => setAskConfirm(false)}>No, Back</Button>
+            </>
           }
-            <Button onClick={() => setAskConfirm(false)}>No, Back</Button>
           { promtMsg && <p>{promtMsg}</p> }
         </Card>
         }

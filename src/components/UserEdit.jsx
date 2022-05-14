@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Form, Input, Button, DatePicker } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { Form, Input, InputNumber, Button, DatePicker } from 'antd';
 import moment from 'moment';
 
 import useAuth from './../hooks/useAuth';
@@ -18,9 +18,8 @@ const tailFormItemLayout = {
 };
 
 const UserEdit = props => {
-	const { id } = useParams();
 	const navigate = useNavigate();
-	const { auth } = useAuth();
+	const { auth, setAuth } = useAuth();
   const [status, setStatus] = useState('isLoading');
 	const [userData, setUserData] = useState(null);
 	const [promtMsg, setpromtMsg] = useState('');
@@ -41,10 +40,16 @@ const UserEdit = props => {
 	const onFinish = async values => {
 		setStatus('isSubmitting');
 		const { confirm, ...data } = values;
-		console.log(data);
+    data.workerid = parseInt(data.workerid, 10);
     authHeader(auth.username, auth.password);
 		try {
-      await http.put(`/${auth.role}s/${auth.id}`, data)
+      const response = await http.put(`/${auth.role}s/${auth.id}`, data)
+      setAuth({
+        id: response.data.id,
+        username: response.data.username,
+        password: data.password,
+        role: response.data.role
+      });
       setStatus('isComplete');
       setpromtMsg('Submitted successfully. We will redirect you now');
       setTimeout(() => {
@@ -61,7 +66,11 @@ const UserEdit = props => {
     }
 	};
 
-	const fnameRules = [{ required: true, message:'Please input your first name' }];
+	const workeridRules = [
+    { pattern: new RegExp(/^[0-9]+$/), message:'Not invalid worker ID' },
+    { required: true, message:'Please input your worker ID' }
+  ]
+  const fnameRules = [{ required: true, message:'Please input your first name' }];
   const lnameRules = [{ required: true, message:'Please input your last name' }];
   const usernameRules = [{ required: true, message: 'Please input your username', whitespace: true }];
   const emailRules = [
@@ -93,12 +102,16 @@ const UserEdit = props => {
 						name="register"
 						onFinish={onFinish}
 						initialValues={{
+              workerid: userData?.workerid ? `${userData.workerid}` : '',
 							firstname: userData?.firstname ? `${userData.firstname}` : '',
               lastname: userData?.lastname ? `${userData.lastname}` : '',
               username: userData?.username ? `${userData.username}` : '',
               about: userData?.about ? `${userData.about}` : '',
               email: userData?.email ? `${userData.email}` : '' }}>
-    				<Form.Item name="firstname" label="First Name" autoComplete="given-name" rules={fnameRules}>
+    				<Form.Item name="workerid" label="Worker ID" autoComplete="off" rules={workeridRules}>
+              <InputNumber />
+            </Form.Item>
+            <Form.Item name="firstname" label="First Name" autoComplete="given-name" rules={fnameRules}>
               <Input />
             </Form.Item>
             <Form.Item name="lastname" label="Last Name" autoComplete="family-name" rules={lnameRules}>
